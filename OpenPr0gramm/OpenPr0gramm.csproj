@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="AccountInfo.cs" />
     <Compile Include="BanInfo.cs" />
+    <Compile Include="Timer.cs" />
     <Compile Include="DateTimeEx.cs" />
     <Compile Include="FormData\SiteSettingsData.cs" />
     <Compile Include="FormData\ChangeAccountSettingData.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="FormData\RequestEmailChangeData.cs" />
     <Compile Include="Response\SyncResponse.cs" />
     <Compile Include="ProfileUpload.cs" />
+    <Compile Include="SyncTimer.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="User.cs" />
