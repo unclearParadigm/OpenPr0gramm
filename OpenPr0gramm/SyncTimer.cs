@@ -13,7 +13,7 @@ namespace OpenPr0gramm
         public IPr0grammUserService UserService { get; }
         public int LastId { get; set; } = 0;
 
-        public event EventHandler<SyncResponse> SyncCompleted;
+        public event EventHandler<SyncResponse> GotSync;
 
         private Timer _timer;
         private readonly object _lockObj = new object();
@@ -60,8 +60,9 @@ namespace OpenPr0gramm
         {
             var res = await UserService.Sync(LastId).ConfigureAwait(false);
             Debug.Assert(res != null);
-            LastId = res.LastId;
-            SyncCompleted?.Invoke(this, res);
+            if (res.LastId != 0)
+                LastId = res.LastId;
+            GotSync?.Invoke(this, res);
         }
 
         private static IPr0grammUserService GetServiceFromClient(IPr0grammApiClient client)

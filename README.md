@@ -49,6 +49,22 @@ var client2 = new Pr0grammClient(container); // Client mit Satz an Cookies initi
 ```
 Der Rest sollte selbsterklärend sein. Sämtliche Funktionalität befindet sich bei der `Pr0grammClient`-Klasse.
 
+### Extras
+
+OpenPr0gramm hat auch ein paar Zusatzklassen, die ein paar API-Funktionen wrappen.
+
+#### SyncTimer
+Der `SyncTimer` ist ein Timer, der den Sync-Befehl automatisch aufruft. Das ist z. B. praktisch um zu schauen, ob es neue Nachrichten gibt.
+```C#
+var timer = new SyncTimer(client); // oder einen IPr0grammUserService
+timer.GotSync += (sender, e) => Console.WriteLine($"Es gibt {e.InboxCount} neue Nachrichten");
+timer.Start(); // Syncs anfangen
+// ...
+timer.Stop(); // keine Syncs mehr machen
+```
+Die `lastId` behält der `SyncTimer` intern vor und updated sie entsprechend.
+
+
 ## Nutzungsbestimmungen/Lizenz
 Zusätzlich zu den in der LICENSE-File angegebenen Bestimmungen gilt:
 - **Keine kommerzielle Nutzung.**
