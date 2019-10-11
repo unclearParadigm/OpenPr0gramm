@@ -50,7 +50,7 @@ namespace OpenPr0gramm
             {
                 Formatting = Formatting.None,
                 NullValueHandling = NullValueHandling.Ignore,
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new PrivateSetterCamelCasePropertyNamesContractResolver()
             })
         };
 
