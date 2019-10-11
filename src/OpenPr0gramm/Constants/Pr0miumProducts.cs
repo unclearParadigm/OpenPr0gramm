@@ -1,4 +1,4 @@
-﻿namespace OpenPr0gramm
+﻿namespace OpenPr0gramm.Constants
 {
     public static class Pr0miumProducts
     {

@@ -1,5 +1,4 @@
-﻿
-namespace OpenPr0gramm
+﻿namespace OpenPr0gramm.Constants
 {
     internal static class ClientConstants
     {
@@ -11,7 +10,6 @@ namespace OpenPr0gramm
         internal const string HostName = "pr0gramm.com";
 
         internal const string BaseAddress = ProtocolPrefix + HostName;
-        internal const string InsecureBaseAddress = InsecureProtocolPrefix + HostName;
 
         internal const string ApiBaseUrl = BaseAddress + "/api";
 
