@@ -46,11 +46,11 @@ namespace OpenPr0gramm
         private static readonly RefitSettings _refitSettings = new RefitSettings
         {
             UrlParameterFormatter = new EnumsAsIntegersParameterFormatter(),
-            JsonSerializerSettings = new JsonSerializerSettings
+            ContentSerializer = new JsonContentSerializer(new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore,
-            }
+            })
         };
 
         public Pr0grammApiClient(IWebProxy proxy = null)
