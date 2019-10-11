@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using OpenPr0gramm.Models;
+using OpenPr0gramm.Structures;
 
 namespace OpenPr0gramm.Tests
 {
@@ -122,12 +124,14 @@ namespace OpenPr0gramm.Tests
                 await stream.CopyToAsync(expectedStream).ConfigureAwait(false);
             }
         }
+
         private static async Task<string> DownloadExpectedFile(string url)
         {
             var name = Path.GetTempFileName();
             await DownloadFile(name, url).ConfigureAwait(false);
             return name;
         }
+
         private static async Task<string> StreamToFile(Stream source)
         {
             var res = Path.GetTempFileName();
