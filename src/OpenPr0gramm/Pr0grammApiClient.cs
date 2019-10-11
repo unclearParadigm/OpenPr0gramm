@@ -28,7 +28,7 @@ namespace OpenPr0gramm
         string GetCurrentSessionId();
     }
 
-    public class Pr0grammApiClient : IPr0grammApiClient
+    public sealed class Pr0grammApiClient : IPr0grammApiClient
     {
         private readonly HttpClient _client;
         private readonly HttpClientHandler _handler;
@@ -48,8 +48,9 @@ namespace OpenPr0gramm
             UrlParameterFormatter = new EnumsAsIntegersParameterFormatter(),
             ContentSerializer = new JsonContentSerializer(new JsonSerializerSettings
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                Formatting = Formatting.None,
                 NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
             })
         };
 
@@ -108,18 +109,18 @@ namespace OpenPr0gramm
 
         private bool disposedValue = false; // To detect redundant calls
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    _handler.Dispose();
-                    _client.Dispose();
-                }
+            if (disposedValue)
+                return;
 
-                disposedValue = true;
+            if (disposing)
+            {
+                _handler.Dispose();
+                _client.Dispose();
             }
+
+            disposedValue = true;
         }
 
         public void Dispose()
