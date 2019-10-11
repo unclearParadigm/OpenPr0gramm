@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Extensions
 {
     /// <summary>Some utility extensions on <typeparam name="DateTime"/>.</summary>
     internal static class DateTimeExtensions
