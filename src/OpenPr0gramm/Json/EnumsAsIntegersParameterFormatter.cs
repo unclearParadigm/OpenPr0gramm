@@ -1,9 +1,9 @@
-﻿using Refit;
-using System;
+﻿using System;
 using System.Reflection;
 using OpenPr0gramm.Structures;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Json
 {
     internal class EnumsAsIntegersParameterFormatter : IUrlParameterFormatter
     {
