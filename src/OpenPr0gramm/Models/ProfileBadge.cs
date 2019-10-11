@@ -1,22 +1,27 @@
-﻿using Newtonsoft.Json;
-using OpenPr0gramm.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+using OpenPr0gramm.Constants;
+using OpenPr0gramm.Extensions;
+using OpenPr0gramm.Json;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Models
 {
     public class ProfileBadge
     {
         public string Image { get; set; }
         public string Description { get; set; }
         public string Link { get; set; }
+
         [JsonProperty(PropertyName = "created")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreatedAt { get; set; }
 
         public ProfileBadge()
-        { }
+        {
+        }
+
         public ProfileBadge(string image, string description, string link, DateTime createdAt)
             : this()
         {
@@ -33,14 +38,17 @@ namespace OpenPr0gramm
     {
         public string Name { get; set; }
         public string Extra { get; set; }
-        public DynamicProfileBadge(string image, string description, string link, DateTime createdAt, string name, string extra)
+
+        public DynamicProfileBadge(string image, string description, string link, DateTime createdAt, string name,
+            string extra)
             : base(image, description, link, createdAt)
         {
             Name = name;
             Extra = extra;
         }
 
-        public static DynamicProfileBadge CreateFromCommentCount(string userName, int commentCount, DateTime newestCommentTime)
+        public static DynamicProfileBadge CreateFromCommentCount(string userName, int commentCount,
+            DateTime newestCommentTime)
         {
             if (string.IsNullOrWhiteSpace(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -50,10 +58,13 @@ namespace OpenPr0gramm
                 {
                     var template = BadgeTemplates[DynamicBadgeType.Comments];
                     var description = string.Format(template.Description ?? string.Empty, ccn.Key);
-                    var link = $"{ClientConstants.UserUrlPrefix}/{userName}/comments/before/{newestCommentTime.ToUnixTime()}";
-                    return new DynamicProfileBadge(template.Image, description, link, newestCommentTime, template.Name, ccn.Value);
+                    var link =
+                        $"{ClientConstants.UserUrlPrefix}/{userName}/comments/before/{newestCommentTime.ToUnixTime()}";
+                    return new DynamicProfileBadge(template.Image, description, link, newestCommentTime, template.Name,
+                        ccn.Value);
                 }
             }
+
             return null;
         }
 
@@ -66,16 +77,22 @@ namespace OpenPr0gramm
                 return null;
             var template = BadgeTemplates[DynamicBadgeType.Years];
 
-            var description = string.Format(template.Description ?? string.Empty, diffYears, diffYears != 1 ? "e" : string.Empty);
+            var description = string.Format(template.Description ?? string.Empty, diffYears,
+                diffYears != 1 ? "e" : string.Empty);
             var link = $"{ClientConstants.UserUrlPrefix}/{userName}";
-            return new DynamicProfileBadge(template.Image, description, link, registeredSince, template.Name, diffYears.ToString());
+            return new DynamicProfileBadge(template.Image, description, link, registeredSince, template.Name,
+                diffYears.ToString());
         }
 
-        private static Dictionary<DynamicBadgeType, BadgeTemplate> BadgeTemplates = new Dictionary<DynamicBadgeType, BadgeTemplate>
-        {
-            [DynamicBadgeType.Comments] = new BadgeTemplate("comments", "Hat mehr als {0} Kommentare verfasst", null, null, ClientConstants.BadgeUrlPrefix + "/comments.png"),
-            [DynamicBadgeType.Years] = new BadgeTemplate("years", "Hat {0} Jahr{1} auf pr0gramm verschwendet", null, null, ClientConstants.BadgeUrlPrefix + "/years.png")
-        };
+        private static Dictionary<DynamicBadgeType, BadgeTemplate> BadgeTemplates =
+            new Dictionary<DynamicBadgeType, BadgeTemplate>
+            {
+                [DynamicBadgeType.Comments] = new BadgeTemplate("comments", "Hat mehr als {0} Kommentare verfasst",
+                    null, null, ClientConstants.BadgeUrlPrefix + "/comments.png"),
+                [DynamicBadgeType.Years] = new BadgeTemplate("years", "Hat {0} Jahr{1} auf pr0gramm verschwendet", null,
+                    null, ClientConstants.BadgeUrlPrefix + "/years.png")
+            };
+
         private static readonly Dictionary<int, string> CommentCountNames = new Dictionary<int, string>
         {
             [1000] = "1k",
@@ -91,6 +108,7 @@ namespace OpenPr0gramm
         public string Link { get; }
         public string Extra { get; }
         public string Image { get; }
+
         public BadgeTemplate(string name, string description, string link, string extra, string image)
         {
             Name = name;
@@ -100,6 +118,7 @@ namespace OpenPr0gramm
             Image = image;
         }
     }
+
     internal enum DynamicBadgeType
     {
         Comments = 0,

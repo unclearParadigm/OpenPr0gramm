@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using OpenPr0gramm.Json;
-using System;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Models
 {
 #if FW
     [Serializable]
@@ -17,9 +17,11 @@ namespace OpenPr0gramm
         public string RecipientName { get; set; }
         public int RecipientMark { get; set; }
         public int RecipientId { get; set; }
+
         [JsonProperty(PropertyName = "created")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreatedAt { get; set; }
+
         public string Message { get; set; }
 
         public override string ToString() => $"{SenderName} ({SenderId}) -> {RecipientName} ({RecipientId}): {Message}";

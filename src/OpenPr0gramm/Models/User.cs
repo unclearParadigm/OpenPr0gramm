@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using OpenPr0gramm.Json;
-using System;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Models
 {
 #if FW
     [Serializable]
@@ -24,16 +24,19 @@ namespace OpenPr0gramm
         [JsonProperty(PropertyName = "registered")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime RegisteredSince { get; set; }
+
         public int Score { get; set; }
-        [JsonProperty(PropertyName = "admin")]
-        public bool IsAdmin { get; set; }
+        [JsonProperty(PropertyName = "admin")] public bool IsAdmin { get; set; }
+
         [JsonProperty(PropertyName = "banned")]
         public bool IsBanned { get; set; }
+
         [JsonProperty(PropertyName = "bannedUntil")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? BannedUntil { get; set; }
 
-        public override string ToString() => $"{base.ToString()} (RegisteredSince: {RegisteredSince}, Score: {Score}, IsAdmin: {IsAdmin}, IsBanned: {IsBanned})";
+        public override string ToString() =>
+            $"{base.ToString()} (RegisteredSince: {RegisteredSince}, Score: {Score}, IsAdmin: {IsAdmin}, IsBanned: {IsBanned})";
     }
 
 #if FW
@@ -42,14 +45,18 @@ namespace OpenPr0gramm
     public class FollowedUser : INamedPr0grammUser
     {
         public string ItemId { get; set; }
+
         /// <summary> Use the BaseAddress property of your HttpClient to prepend the protocol and host name. </summary>
         [JsonProperty(PropertyName = "thumb")]
         public string ThumbnailUrl { get; set; }
+
         public string Name { get; set; }
         public UserMark Mark { get; set; }
+
         [JsonProperty(PropertyName = "lastPost")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime LastPostAt { get; set; }
+
         [JsonProperty(PropertyName = "followCreated")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime FollowingSince { get; set; }
@@ -63,6 +70,7 @@ namespace OpenPr0gramm
         public string Name { get; set; }
         public UserMark Mark { get; set; }
         public string Email { get; set; }
+
         [JsonProperty(PropertyName = "created")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime RegisteredAt { get; set; }
