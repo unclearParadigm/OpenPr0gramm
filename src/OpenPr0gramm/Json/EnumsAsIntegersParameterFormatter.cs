@@ -1,6 +1,7 @@
 ﻿using Refit;
 using System;
 using System.Reflection;
+using OpenPr0gramm.Structures;
 
 namespace OpenPr0gramm
 {
@@ -13,12 +14,12 @@ namespace OpenPr0gramm
                 return null;
             var info = Denullify(parameterInfo.ParameterType);
             if (info.IsEnum && parameterInfo.ParameterType == typeof(ItemFlags))
-                return ((int)((ItemFlags)parameterValue)).ToString();
+                return ((int) ((ItemFlags) parameterValue)).ToString();
             return parameterValue.ToString();
         }
 
         // Just makes sure you have the generic type arg for Nullable<T>
-        static TypeInfo Denullify(Type type)
+        private static TypeInfo Denullify(Type type)
         {
             var info = type.GetTypeInfo();
             if (info.IsGenericType && info.GetGenericTypeDefinition() == typeof(Nullable<>))
