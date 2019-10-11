@@ -11,7 +11,7 @@ namespace OpenPr0gramm
     // TODO test
     public class ItemDownloader : IDisposable
     {
-        private static string UserAgent = ClientConstants.GetUserAgent(nameof(ItemDownloader));
+        private static readonly string UserAgent = ClientConstants.GetUserAgent(nameof(ItemDownloader));
 
         public DownloadKind DownloadKind { get; set; }
         public bool UsingHttps { get; }
@@ -98,11 +98,11 @@ namespace OpenPr0gramm
             switch (downloadKind)
             {
                 case DownloadKind.Thumbnail:
-                    return ClientConstants.GetThumbnailUrlPrefix(useHttps);
+                    return ClientConstants.GetThumbnailUrlPrefix;
                 case DownloadKind.NormalImage:
-                    return ClientConstants.GetImageUrlPrefix(useHttps);
+                    return ClientConstants.GetImageUrlPrefix;
                 case DownloadKind.LargestAvailable:
-                    return ClientConstants.GetFullSizeUrlPrefix(useHttps);
+                    return ClientConstants.GetFullSizeUrlPrefix;
                 default:
                     throw new InvalidOperationException();
             }

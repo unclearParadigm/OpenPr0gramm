@@ -11,6 +11,7 @@ namespace OpenPr0gramm.Models
 #endif
     public class Item : IPr0grammItem
     {
+        [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "promoted")]
@@ -35,9 +36,16 @@ namespace OpenPr0gramm.Models
         [JsonProperty(PropertyName = "fullsize")]
         public string FullSizeUrl { get; set; }
 
+        [JsonProperty(PropertyName = "source")]
         public string Source { get; set; }
+
+        [JsonProperty(PropertyName = "flags")]
         public ItemFlags Flags { get; set; }
+
+        [JsonProperty(PropertyName = "user")]
         public string User { get; set; }
+
+        [JsonProperty(PropertyName = "mark")]
         public UserMark Mark { get; set; }
 
         public ItemType GetItemType()
@@ -48,14 +56,15 @@ namespace OpenPr0gramm.Models
             return url.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) ? ItemType.Video : ItemType.Image;
         }
 
-        public string GetAbsoluteThumbnailUrl(bool secure) =>
-            ClientConstants.GetThumbnailUrlPrefix(secure) + "/" + ThumbnailUrl;
+        public string GetAbsoluteThumbnailUrl =>
+            ClientConstants.GetThumbnailUrlPrefix + "/" + ThumbnailUrl;
 
-        public string GetAbsoluteFullSizeUrl(bool secure) => FullSizeUrl == null
-            ? GetAbsoluteImageUrl(secure)
-            : ClientConstants.GetFullSizeUrlPrefix(secure) + "/" + FullSizeUrl;
+        public string GetAbsoluteFullSizeUrl => FullSizeUrl == null
+            ? GetAbsoluteImageUrl
+            : ClientConstants.GetFullSizeUrlPrefix + "/" + FullSizeUrl;
 
-        public string GetAbsoluteImageUrl(bool secure) => ClientConstants.GetImageUrlPrefix(secure) + "/" + ImageUrl;
+        public string GetAbsoluteImageUrl =>
+            ClientConstants.GetImageUrlPrefix + "/" + ImageUrl;
     }
 
     public enum ItemType
