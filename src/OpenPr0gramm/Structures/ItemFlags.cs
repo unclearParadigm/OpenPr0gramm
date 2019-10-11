@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Structures
 {
     [Flags]
     public enum ItemFlags

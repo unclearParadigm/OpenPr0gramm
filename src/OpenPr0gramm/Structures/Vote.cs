@@ -1,5 +1,4 @@
-﻿
-namespace OpenPr0gramm
+﻿namespace OpenPr0gramm.Structures
 {
     public enum Vote
     {
