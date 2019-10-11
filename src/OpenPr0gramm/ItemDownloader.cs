@@ -2,6 +2,9 @@
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using OpenPr0gramm.Constants;
+using OpenPr0gramm.Models;
+using OpenPr0gramm.ServiceInterfaces;
 
 namespace OpenPr0gramm
 {
@@ -16,9 +19,11 @@ namespace OpenPr0gramm
         public HttpClient HttpClient { get; }
 
         #region Ctors
+
         public ItemDownloader(DownloadKind downloadKind)
             : this(downloadKind, true)
-        { }
+        {
+        }
 
         public ItemDownloader(DownloadKind downloadKind, bool useHttps)
         {
@@ -37,7 +42,8 @@ namespace OpenPr0gramm
             // save class members to locals since they can change during method execution
             var kind = DownloadKind;
 
-            if (!Enum.IsDefined(typeof(DownloadKind), kind)) // TODO consider remove since all code paths throw exceptions anyways
+            if (!Enum.IsDefined(typeof(DownloadKind), kind)
+            ) // TODO consider remove since all code paths throw exceptions anyways
                 throw new InvalidOperationException();
 
             // if it's a thumbnail, easy going.
@@ -55,7 +61,9 @@ namespace OpenPr0gramm
                         case DownloadKind.NormalImage:
                             return HttpClient.GetStreamAsync(item.ImageUrl);
                         case DownloadKind.LargestAvailable:
-                            var bestUrl = string.IsNullOrWhiteSpace(item.FullSizeUrl) ? item.ImageUrl : item.FullSizeUrl;
+                            var bestUrl = string.IsNullOrWhiteSpace(item.FullSizeUrl)
+                                ? item.ImageUrl
+                                : item.FullSizeUrl;
                             return HttpClient.GetStreamAsync(bestUrl);
                         default:
                             throw new InvalidOperationException();
@@ -74,6 +82,7 @@ namespace OpenPr0gramm
                 throw new ArgumentNullException(nameof(client));
             return client.Items;
         }
+
         private static HttpClient CreateHttpClient(DownloadKind downloadKind, bool useHttps)
         {
             var client = new HttpClient
@@ -83,6 +92,7 @@ namespace OpenPr0gramm
             client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
             return client;
         }
+
         private static string GetBaseAddressForDownloadKind(DownloadKind downloadKind, bool useHttps)
         {
             switch (downloadKind)
@@ -105,6 +115,7 @@ namespace OpenPr0gramm
     {
         Thumbnail,
         NormalImage,
+
         LargestAvailable
         // TODO consider Source
     }

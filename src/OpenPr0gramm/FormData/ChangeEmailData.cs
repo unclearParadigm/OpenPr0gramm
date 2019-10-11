@@ -1,12 +1,12 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class ChangeEmailData : PostFormData
     {
-        [AliasAs("token")]
-        public string Token { get; set; }
+        [AliasAs("token")] public string Token { get; set; }
+
         public ChangeEmailData(string nonce, string token)
             : base(nonce)
         {

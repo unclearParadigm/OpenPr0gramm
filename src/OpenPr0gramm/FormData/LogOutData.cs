@@ -1,12 +1,12 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class LogOutData : PostFormData
     {
-        [AliasAs("id")]
-        public string SessionId { get; }
+        [AliasAs("id")] public string SessionId { get; }
+
         public LogOutData(string nonce, string sessionId)
             : base(nonce)
         {

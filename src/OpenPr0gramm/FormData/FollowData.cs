@@ -1,12 +1,12 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class FollowData : PostFormData
     {
-        [AliasAs("name")]
-        public string Name { get; }
+        [AliasAs("name")] public string Name { get; }
+
         public FollowData(string nonce, string name)
             : base(nonce)
         {

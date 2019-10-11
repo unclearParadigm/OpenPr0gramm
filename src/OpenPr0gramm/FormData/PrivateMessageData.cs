@@ -1,13 +1,11 @@
 ﻿using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class PrivateMessageData : PostFormData
     {
-        [AliasAs("recipientId")]
-        public int RecipientId { get; }
-        [AliasAs("comment")]
-        public string Content { get; }
+        [AliasAs("recipientId")] public int RecipientId { get; }
+        [AliasAs("comment")] public string Content { get; }
 
         public PrivateMessageData(string nonce, int recipientId, string message)
             : base(nonce)

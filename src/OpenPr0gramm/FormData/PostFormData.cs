@@ -1,12 +1,12 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public abstract class PostFormData
     {
-        [AliasAs("_nonce")]
-        public string Nonce { get; }
+        [AliasAs("_nonce")] public string Nonce { get; }
+
         protected PostFormData(string nonce)
         {
             Debug.Assert(!string.IsNullOrWhiteSpace(nonce));
@@ -14,6 +14,7 @@ namespace OpenPr0gramm
             Nonce = nonce;
         }
     }
+
     public abstract class AnonymousFormData
     {
         // No Nonce

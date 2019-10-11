@@ -1,18 +1,14 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class JoinWithTokenData : AnonymousFormData
     {
-        [AliasAs("token")]
-        public string Token { get; }
-        [AliasAs("password")]
-        public string Password { get; }
-        [AliasAs("email")]
-        public string Email { get; }
-        [AliasAs("name")]
-        public string Name { get; }
+        [AliasAs("token")] public string Token { get; }
+        [AliasAs("password")] public string Password { get; }
+        [AliasAs("email")] public string Email { get; }
+        [AliasAs("name")] public string Name { get; }
 
         public JoinWithTokenData(string email, string name, string password, string token)
         {

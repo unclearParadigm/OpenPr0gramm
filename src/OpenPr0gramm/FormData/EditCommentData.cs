@@ -1,13 +1,12 @@
 ﻿using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class EditCommentData : PostFormData
     {
-        [AliasAs("comment")]
-        public string NewContent { get; }
-        [AliasAs("commentId")]
-        public int CommentId { get; }
+        [AliasAs("comment")] public string NewContent { get; }
+        [AliasAs("commentId")] public int CommentId { get; }
+
         public EditCommentData(string nonce, int commentId, string newContent)
             : base(nonce)
         {

@@ -1,12 +1,12 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class InviteData : PostFormData
     {
-        [AliasAs("email")]
-        public string Email { get; }
+        [AliasAs("email")] public string Email { get; }
+
         public InviteData(string nonce, string email)
             : base(nonce)
         {

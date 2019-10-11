@@ -1,16 +1,14 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class ResetPasswordData : AnonymousFormData
     {
-        [AliasAs("name")]
-        public string Name { get; }
-        [AliasAs("token")]
-        public string Token { get; }
-        [AliasAs("password")]
-        public string NewPassword { get; }
+        [AliasAs("name")] public string Name { get; }
+        [AliasAs("token")] public string Token { get; }
+        [AliasAs("password")] public string NewPassword { get; }
+
         public ResetPasswordData(string token, string name, string newPassword)
         {
             Debug.Assert(!string.IsNullOrWhiteSpace(token));

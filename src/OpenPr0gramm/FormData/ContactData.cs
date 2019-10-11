@@ -1,16 +1,13 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class ContactData : PostFormData
     {
-        [AliasAs("email")]
-        public string EmailAddress { get; }
-        [AliasAs("subject")]
-        public string Subject { get; }
-        [AliasAs("message")]
-        public string Message { get; }
+        [AliasAs("email")] public string EmailAddress { get; }
+        [AliasAs("subject")] public string Subject { get; }
+        [AliasAs("message")] public string Message { get; }
 
         public ContactData(string nonce, string email, string subject, string message)
             : base(nonce)

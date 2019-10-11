@@ -1,16 +1,14 @@
-﻿using Refit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class SiteSettingsData : PostFormData
     {
-        [AliasAs("likesArePublic")]
-        public int LikesArePublic { get; }
-        [AliasAs("showAds")]
-        public int ShowAds { get; }
-        [AliasAs("userStatus")]
-        public string UserStatus { get; }
+        [AliasAs("likesArePublic")] public int LikesArePublic { get; }
+        [AliasAs("showAds")] public int ShowAds { get; }
+        [AliasAs("userStatus")] public string UserStatus { get; }
+
         public SiteSettingsData(string nonce, bool likesArePublic, bool showAds, string userStatus)
             : base(nonce)
         {

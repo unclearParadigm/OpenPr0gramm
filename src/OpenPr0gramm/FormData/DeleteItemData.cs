@@ -1,23 +1,18 @@
 ﻿using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.FormData
 {
     public class DeleteItemData : PostFormData
     {
-        [AliasAs("itemId")]
-        public int ItemId { get; }
-        [AliasAs("days")]
-        public int Days { get; }
-        [AliasAs("banUser")]
-        public bool BanUser { get; }
-        [AliasAs("notifyUser")]
-        public bool NotifyUser { get; }
-        [AliasAs("reason")]
-        public string Reason { get; }
-        [AliasAs("customReason")]
-        public string CustomReason { get; }
+        [AliasAs("itemId")] public int ItemId { get; }
+        [AliasAs("days")] public int Days { get; }
+        [AliasAs("banUser")] public bool BanUser { get; }
+        [AliasAs("notifyUser")] public bool NotifyUser { get; }
+        [AliasAs("reason")] public string Reason { get; }
+        [AliasAs("customReason")] public string CustomReason { get; }
 
-        public DeleteItemData(string nonce, int itemId, string reason, string customReason, bool notifyUser, bool banUser, int days)
+        public DeleteItemData(string nonce, int itemId, string reason, string customReason, bool notifyUser,
+            bool banUser, int days)
             : base(nonce)
         {
             ItemId = itemId;
