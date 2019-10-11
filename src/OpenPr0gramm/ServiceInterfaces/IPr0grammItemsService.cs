@@ -1,21 +1,32 @@
-﻿using Refit;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using OpenPr0gramm.FormData;
+using OpenPr0gramm.Response;
+using OpenPr0gramm.Structures;
+using Refit;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.ServiceInterfaces
 {
     public interface IPr0grammItemsService
     {
         [Post("/items/delete")]
-        Task<Pr0grammResponse> Delete([Body(BodySerializationMethod.UrlEncoded)]DeleteItemData data);
+        Task<Pr0grammResponse> Delete([Body(BodySerializationMethod.UrlEncoded)]
+            DeleteItemData data);
 
         [Get("/items/get")]
-        Task<GetItemsResponse> GetItems(ItemFlags flags, int promoted, int following, string tags, string user, string likes, int self);
+        Task<GetItemsResponse> GetItems(ItemFlags flags, int promoted, int following, string tags, string user,
+            string likes, int self);
+
         [Get("/items/get")]
-        Task<GetItemsResponse> GetItemsNewer(ItemFlags flags, int promoted, int following, string tags, string user, string likes, int self, int newer);
+        Task<GetItemsResponse> GetItemsNewer(ItemFlags flags, int promoted, int following, string tags, string user,
+            string likes, int self, int newer);
+
         [Get("/items/get")]
-        Task<GetItemsResponse> GetItemsOlder(ItemFlags flags, int promoted, int following, string tags, string user, string likes, int self, int older);
+        Task<GetItemsResponse> GetItemsOlder(ItemFlags flags, int promoted, int following, string tags, string user,
+            string likes, int self, int older);
+
         [Get("/items/get")]
-        Task<GetItemsResponse> GetItemsAround(ItemFlags flags, int promoted, int following, string tags, string user, string likes, int self, [AliasAs("id")] int aroundId);
+        Task<GetItemsResponse> GetItemsAround(ItemFlags flags, int promoted, int following, string tags, string user,
+            string likes, int self, [AliasAs("id")] int aroundId);
 
         [Get("/items/info")]
         Task<GetItemsInfoResponse> GetInfo(int itemId);
@@ -33,7 +44,8 @@ namespace OpenPr0gramm
         Task<Pr0grammResponse> RateLimited();
 
         [Post("/items/vote")]
-        Task<Pr0grammResponse> Vote([Body(BodySerializationMethod.UrlEncoded)]VoteData data);
+        Task<Pr0grammResponse> Vote([Body(BodySerializationMethod.UrlEncoded)]
+            VoteData data);
     }
 
     /*
@@ -63,5 +75,4 @@ namespace OpenPr0gramm
         }
     }
     */
-
 }
