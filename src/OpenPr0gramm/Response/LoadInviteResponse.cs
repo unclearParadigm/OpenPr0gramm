@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenPr0gramm.Models;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Response
 {
 #if FW
     [Serializable]

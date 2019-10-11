@@ -1,5 +1,4 @@
-﻿
-namespace OpenPr0gramm
+﻿namespace OpenPr0gramm.Response
 {
     public class GetCheckoutUrlResponse : Pr0grammResponse
     {

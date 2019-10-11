@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Response
 {
 #if FW
     [Serializable]

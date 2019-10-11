@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Response
 {
     public class SyncResponse : Pr0grammResponse
     {

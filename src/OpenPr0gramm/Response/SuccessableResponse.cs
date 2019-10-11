@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenPr0gramm
+﻿namespace OpenPr0gramm.Response
 {
 #if FW
     [Serializable]
@@ -10,7 +8,9 @@ namespace OpenPr0gramm
         public bool Success { get; private set; }
 
         public SuccessableResponse()
-        { }
+        {
+        }
+
         public SuccessableResponse(bool success)
         {
             Success = success;

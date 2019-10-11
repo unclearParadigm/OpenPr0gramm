@@ -1,8 +1,8 @@
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using OpenPr0gramm.Models;
 
-namespace OpenPr0gramm
+namespace OpenPr0gramm.Response
 {
 #if FW
     [Serializable]
@@ -19,11 +19,14 @@ namespace OpenPr0gramm
         public int LikeCount { get; private set; }
         public int TagCount { get; private set; }
         public IReadOnlyList<ProfileBadge> Badges { get; internal set; }
+
         [JsonProperty(PropertyName = "followcount")]
         public int FollowCount { get; private set; }
+
         [JsonProperty(PropertyName = "following")]
         public bool IsFollowing { get; private set; }
 
-        public override string ToString() => $"Profile: {User}; {Comments.Count} comments (of {CommentCount}); {Uploads.Count} comments (of {UploadCount}); {TagCount} tags";
+        public override string ToString() =>
+            $"Profile: {User}; {Comments.Count} comments (of {CommentCount}); {Uploads.Count} comments (of {UploadCount}); {TagCount} tags";
     }
 }

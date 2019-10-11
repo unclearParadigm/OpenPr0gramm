@@ -1,7 +1,4 @@
-﻿
-using System;
-
-namespace OpenPr0gramm
+﻿namespace OpenPr0gramm.Response
 {
 #if FW
     [Serializable]
