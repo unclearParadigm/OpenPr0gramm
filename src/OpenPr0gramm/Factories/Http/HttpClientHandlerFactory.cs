@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.Http;
 
-namespace OpenPr0gramm.Infrastructure
+namespace OpenPr0gramm.Factories.Http
 {
-    public class HttpClientHandlerFactory
+    public static class HttpClientHandlerFactory
     {
         public static HttpClientHandler Create(IWebProxy proxy = null)
         {

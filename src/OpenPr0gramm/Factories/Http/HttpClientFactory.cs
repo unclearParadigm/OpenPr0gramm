@@ -1,7 +1,8 @@
 using System;
 using System.Net.Http;
+using OpenPr0gramm.Constants;
 
-namespace OpenPr0gramm.Infrastructure
+namespace OpenPr0gramm.Factories.Http
 {
     public class HttpClientFactory
     {
